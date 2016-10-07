@@ -190,11 +190,19 @@
 
         <div class="tick">
             <span>刷新时间 </span>
-            <select class="set_update">
+            <select>
                 <option value='0'>立即</option>
                 <option value='1000'>1秒</option>
                 <option value='5000' selected>5秒</option>
                 <option value='10000'>10秒</option>
+            </select>
+        </div>
+
+        <div class="filter">
+            <span>方式 </span>
+            <select>
+                <option value='default'>默认</option>
+                <option value='api'>官方API</option>
             </select>
         </div>
 
@@ -284,6 +292,10 @@
 
                 $("#foot .tick select").change(function() {
                     app.setTick($(this).val());
+                });
+
+                $("#foot .filter select").change(function() {
+                    app.setFilter($(this).val());
                 });
 
                 window.remove = function(id){
