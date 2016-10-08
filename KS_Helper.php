@@ -1,29 +1,30 @@
-﻿<!--
+<?php
+    /****************************************
+     *  VERSION : v.20161006
+     *  DATE    : 2016-10-06
+     *
+     *  Copyright (C) 201x (reruin#gmail.com) 
+     *
+     *  This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the 
+     *  Free Software Foundation, either version 2 of the License, or(at your option) any later version.
+     *  
+     *  This is distributed in the hope that it will be useful,but WITHOUT ANY WARRANTY;  without even the implied warranty of MERCHANTABILITY      
+     *  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
+     *
+     *  You should have received a copy of the GNU General Public License along with Foobar. If not, see <http://www.gnu.org/licenses/>.
+     *
+     *****************************************/
 
-/****************************************
- * 	VERSION	: v.20161006
- * 	DATE	: 2016-10-06
- *
- * 	Copyright (C) 201x (reruin#gmail.com) 
- *
- *	This is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the 
- *	Free Software Foundation, either version 2 of the License, or(at your option) any later version.
- *	
- * 	This is distributed in the hope that it will be useful,but WITHOUT ANY WARRANTY;  without even the implied warranty of MERCHANTABILITY      
- *	or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details. 
- *
- *	You should have received a copy of the GNU General Public License along with Foobar. If not, see <http://www.gnu.org/licenses/>.
- *
- *****************************************/
- 
--->
+    if(!empty($_GET['hard'])){
+        echo( file_get_contents( "https://www.kimsufi.com/en/order/kimsufi.cgi?hard=" . $_GET['hard']) );
+        exit();
+    }
+?>
+
 <html>
-<HTA:APPLICATION ID="oHTA" CONTEXTMENU="yes" INNERBORDER="no" NAVIGABLE="yes" SCROLL="no" />
-
 <head>
     <title>KS Helper</title>
     <style type="text/css">
-    html{ width:1100px;}
     body {
         background: #ffffff;
         margin: 0;
@@ -137,11 +138,11 @@
     }
 
     .item span.w2{
-    	width: 150px; 
-    	color:#333;
+        width: 150px; 
+        color:#333;
     }
     .item span.w3{
-    	width: 120px; 
+        width: 120px; 
     }
 
     .item span .uptime{ padding-left:8px; font-size: 9px; }
@@ -155,10 +156,6 @@
         border-bottom: #9ed8ec 2px solid;
     }
 
-    .pricedown {
-        background: #fae4e6;
-    }
-    
     .availabe {
         background: #d1f1c2;
     }
@@ -201,7 +198,7 @@
         <div class="filter">
             <span>方式 </span>
             <select>
-                <option value='default'>默认</option>
+                <option value='local'>默认</option>
                 <option value='api'>官方API</option>
             </select>
         </div>
@@ -209,55 +206,12 @@
         <div class="help"><a href="#">帮助</a></div>
 
     </div>
-    <script type="text/javascript" src='http://libs.baidu.com/jquery/1.4.4/jquery.min.js'></script>
+    <script type="text/javascript" src='http://libs.baidu.com/jquery/1.9.1/jquery.min.js'></script>
     <script type="text/javascript" src='lib/kimsufi.js'></script>
     <script type="text/javascript">  
         $(function() {
-            var console = window.console || {
-                'log': function() {}
-            }
 
-            var cookie = function(name, value, options) {
-                if (typeof value != 'undefined') { // name and value given, set cookie
-                    options = options || {};
-                    if (value === null) {
-                        value = '';
-                        options.expires = -1;
-                    }
-                    var expires = '';
-                    if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
-                        var date;
-                        if (typeof options.expires == 'number') {
-                            date = new Date();
-                            date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
-                        } else {
-                            date = options.expires;
-                        }
-                        expires = '; expires=' + date.toUTCString(); // use expires attribute, max-age is not supported by IE
-                    }
-                    // CAUTION: Needed to parenthesize options.path and options.domain
-                    // in the following expressions, otherwise they evaluate to undefined
-                    // in the packed version for some reason...
-                    var path = options.path ? '; path=' + (options.path) : '';
-                    var domain = options.domain ? '; domain=' + (options.domain) : '';
-                    var secure = options.secure ? '; secure' : '';
-                    document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
-                } else { // only name given, get cookie
-                    var cookieValue = null;
-                    if (document.cookie && document.cookie != '') {
-                        var cookies = document.cookie.split(';');
-                        for (var i = 0; i < cookies.length; i++) {
-                            var cookie = jQuery.trim(cookies[i]);
-                            // Does this cookie string begin with the name we want?
-                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                break;
-                            }
-                        }
-                    }
-                    return cookieValue;
-                }
-            };
+            var store = window.localStorage;
 
             function template(str, data) {
                 return str.replace(/\{ *([\w_]+) *\}/g, function(str, key) {
@@ -298,16 +252,13 @@
                     app.setFilter($(this).val());
                 });
 
-                window.remove = function(id){
+                $('#all').on('click', 'a.remove' , function(){
+                    var id = $(this).attr('data-id');
                     if(window.confirm('确定删除？')){
                         app.remove(id);
                     }
-                }
+                })
 
-                window.order = function(id){
-                    window.clipboardData.setData("Text", kimsufi.getOrderUrl(id));
-                    alert('购买地址已复制');
-                }
             }
 
             function notify(){
@@ -325,21 +276,22 @@
                     '<span class="status">{status_str}</span>' +
                     '<span class="uptime"></span>' +
                     '</span>' +
-                    '<span></span><span class="op"><label><input type="checkbox" checked />提醒</label><a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank" onclick="order( \'{id}\' );">下单</a><a href="#" onclick="remove( \'{id}\' );">移除</a></span>' +
+                    '<span></span><span class="op"><label><input type="checkbox" checked />提醒</label><a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank">下单</a><a href="#" class="remove" data-id="{id}">移除</a></span>' +
                     '</div>';
 
 
                 var app = kimsufi();
 
                 app
+                    .setFilter('local')
                     .on('add', function(data) {
                         $('#all').append(template(tpl, data));
-                        cookie('models', app.getModels().join(';'), { 'expires': 365 });
+                        store.models = app.getModels().join(';');
                     })
                     .on('remove' , function(data){
                         var id = data.id;
                         $('#item_'+id).remove();
-                        cookie('models', app.getModels().join(';'), { 'expires': 365 });
+                        store.models = app.getModels().join(';');
                         notify();
                     })
                     .on('update', function(data) {
@@ -354,7 +306,7 @@
                         notify();
                     })
 
-                    .add(cookie('models') ? cookie('models').split(';') : ['162sk32', '162sk42']);
+                    .add(store['models'] ? store['models'].split(';') : ['162sk32', '162sk42']);
 
                 create_layout(app);
             }
@@ -363,5 +315,4 @@
         });
 </script>
 </body>
-
 </html>
