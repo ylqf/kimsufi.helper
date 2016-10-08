@@ -179,16 +179,15 @@
     <div id="all">
         <div class="head item">
             <span>类型(Model)</span>
-            <span>状态(Status)</span>
-            <span class="w1">CPU</span>
+            <span class="w2">状态(Status)</span>
+            <span class="w3">CPU</span>
             <!--
             <span class="w3">核心(Cores/Threads)</span>
             <span>主频(Freq.)</span>
             -->
             <span>内存(RAM)</span>
             <span>磁盘(Disk)</span>
-            <span class="w3">网络(Network)</span>
-            <span class="w1">IPv6</span>
+            <span>网络(Network)</span>
             <span class="w3">价格(Price/month)</span>
         </div>
     </div>
@@ -225,8 +224,13 @@
             var store = window.localStorage;
 
             function template(str, data) {
-                return str.replace(/\{ *([\w_]+) *\}/g, function(str, key) {
-                    var value = data[key];
+                return str.replace(/\{ *([\w\.\_]+) *\}/g, function(str, key) {
+                    var p = key.split('.');
+                    var value;
+                    for(var i=0; i<p.length;i++){
+                        if(value === undefined) value = data;
+                        value = value[p[i]];
+                    }
                     if (value === undefined) {
                         console.log('No value provided for variable ' + str);
                         value = "{" + key + "}";
@@ -283,12 +287,12 @@
             }
             function start() {
                 var tpl = '<div class="item" id="item_{id}">' +
-                    '<span>{title}</span>' +
+                    '<span>{data.title}</span>' +
                     '<span class="w2">' +
                     '<span class="status">{status_str}</span>' +
                     '<span class="uptime"></span>' +
                     '</span>' +
-                    '<span></span><span class="op"><label><input type="checkbox" checked />提醒</label><a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank">下单</a><a href="#" class="remove" data-id="{id}">移除</a></span>' +
+                    '<span class="w3">{data.cpu}</span><span>{data.ram}</span><span>{data.disk}</span><span>{data.network}</span><span class="w3">{data.price}</span><span class="op"><label><input type="checkbox" checked />提醒</label><a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank">下单</a><a href="#" class="remove" data-id="{id}">移除</a></span>' +
                     '</div>';
 
 
