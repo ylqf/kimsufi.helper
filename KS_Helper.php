@@ -16,7 +16,12 @@
      *****************************************/
 
     if(!empty($_GET['hard'])){
-        echo( file_get_contents( "https://www.kimsufi.com/en/order/kimsufi.cgi?hard=" . $_GET['hard']) );
+        $resp = file_get_contents( "https://www.kimsufi.com/en/order/kimsufi.cgi?hard=" . $_GET['hard']);
+        $status = array(
+            'status'=> strpos($resp , 'icon-availability') !== false
+        );
+        header('Content-type: application/json');
+        echo( json_encode($status));
         exit();
     }
 ?>
@@ -160,11 +165,17 @@
         background: #d1f1c2;
     }
 
+    audio{
+        opacity: 0;width:1;height:1px;position: absolute;z-index:0;
+    }
     </style>
 </head>
 
 <body>
-    <bgsound id="clock" src="" LOOP="-1" />
+    <audio preload loop id="clock">
+        <source src="http://www.naobiao.com/web_system/naobiao_com_www/img/music/ka_nong_meng_huan/1.ogg" type="audio/ogg">
+        <source src="http://www.naobiao.com/web_system/naobiao_com_www/img/music/ka_nong_meng_huan/1.mp3" type="audio/mpeg">
+    </audio>
     <div id="all">
         <div class="head item">
             <span>类型(Model)</span>
@@ -199,7 +210,7 @@
             <span>方式 </span>
             <select>
                 <option value='local'>默认</option>
-                <option value='api'>官方API</option>
+                <!-- <option value='api'>官方API</option> -->
             </select>
         </div>
 
@@ -207,7 +218,7 @@
 
     </div>
     <script type="text/javascript" src='http://libs.baidu.com/jquery/1.9.1/jquery.min.js'></script>
-    <script type="text/javascript" src='lib/kimsufi.js'></script>
+    <script type="text/javascript" src='https://rawgit.com/reruin/kimsufi.helper/master/lib/kimsufi.js'></script>
     <script type="text/javascript">  
         $(function() {
 
@@ -263,14 +274,15 @@
 
             function notify(){
                 if($('#all').find('.availabe input:checked').length == 0){
-                    $('#clock').attr('src','');
+                    $('#clock')[0].pause();
                 }else{
-                    if(!$('#clock').attr('src'))
-                        $('#clock').attr('src','http://www.2345.com/i/mid/10.mid');
+                    if( $('#clock')[0].paused ){
+                        $('#clock')[0].play();
+                    }
                 }
             }
             function start() {
-                var tpl = '<div class="item item{first}" id="item_{id}" rel="{m}">' +
+                var tpl = '<div class="item" id="item_{id}">' +
                     '<span>{title}</span>' +
                     '<span class="w2">' +
                     '<span class="status">{status_str}</span>' +
