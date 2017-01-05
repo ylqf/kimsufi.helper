@@ -26,8 +26,10 @@
     }
 ?>
 
+<!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>KS Helper</title>
     <style type="text/css">
     body {
