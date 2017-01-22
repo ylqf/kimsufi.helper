@@ -323,10 +323,10 @@
                     '<span class="status">{status_str}</span>' +
                     '<span class="uptime"></span>' +
                     '</span>' +
-                    '<span class="w3">{data.cpu}</span><span>{data.ram}</span><span>{data.disk}</span><span>{data.network}</span><span class="w3">{data.price}</span><span class="op"><label><input type="checkbox" checked />提醒</label><a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank">下单</a><a href="#" class="remove" data-id="{id}">移除</a></span>' +
+                    '<span class="w3">{data.cpu}</span><span>{data.ram}</span><span>{data.disk}</span><span>{data.network}</span><span class="w3">{data.price}</span><span class="op"><label><input type="checkbox" checked />音乐提醒</label><a href="#" class="remove" data-id="{id}">移除</a></span>' +
                     '</div>';
 
-
+                    //<a href="https://www.kimsufi.com/en/order/kimsufi.cgi?hard={id}" target="_blank">下单</a>
                 var app = kimsufi();
 
                 app
