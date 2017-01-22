@@ -1,6 +1,6 @@
 <?php
     /****************************************
-     *  VERSION : v.20161006
+     *  VERSION : v.20170122
      *  DATE    : 2016-10-06
      *
      *  Copyright (C) 201x (reruin#gmail.com) 
@@ -15,14 +15,43 @@
      *
      *****************************************/
 
-    if(!empty($_GET['hard'])){
-        $resp = file_get_contents( "https://www.kimsufi.com/en/order/kimsufi.cgi?hard=" . $_GET['hard']);
+    function notify(){
+
+    }
+
+    function checkOnline($id){
+        $resp = file_get_contents("https://www.online.net/en/winter-2017/sales");
+        $start = strpos($resp , $id);
+        $end = strpos($resp , '</form>',$start);
+        $m = substr($resp , $start , $end - $start);
+        header('Content-type: application/json');
+
+        if($m && strpos($m , 'disabled') === false ){
+            echo('{"status":true}');
+        }
+        else{
+            echo('{"status":false}');
+        }
+        exit();
+    }
+
+    function checkKimsufi($id){
+        $resp = file_get_contents( "https://www.kimsufi.com/en/order/kimsufi.cgi?hard=" . $id);
         $status = array(
             'status'=> strpos($resp , 'icon-availability') !== false
         );
         header('Content-type: application/json');
         echo( json_encode($status));
         exit();
+    }
+    if(!empty($_GET['hard'])){
+        $id = $_GET['hard'];
+        if( $_GET['type'] == 'online'){
+            checkOnline($id);
+        }else{
+            checkKimsufi($id);
+        }
+        
     }
 ?>
 
