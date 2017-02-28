@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Server options - Online / Dedibox - Console</title>
+
+            <link rel="stylesheet" href="/css/22aa66f.css?75244fbc?75244fbc" />
+      
+<link rel="shortcut icon" href="/bundles/onlineconsole/images/favicon.ico?75244fbc" />
+<link rel="apple-touch-icon" sizes="57x57" href="/bundles/onlineconsole/images/apple-touch-icon-57x57.png?75244fbc" />
+<link rel="apple-touch-icon" sizes="114x114" href="/bundles/onlineconsole/images/apple-touch-icon-114x114.png?75244fbc" />
+<link rel="apple-touch-icon" sizes="72x72" href="/bundles/onlineconsole/images/apple-touch-icon-72x72.png?75244fbc" />
+<link rel="apple-touch-icon" sizes="60x60" href="/bundles/onlineconsole/images/apple-touch-icon-60x60.png?75244fbc" />
+<link rel="apple-touch-icon" sizes="120x120" href="/bundles/onlineconsole/images/apple-touch-icon-120x120.png?75244fbc" />
+<link rel="apple-touch-icon" sizes="76x76" href="/bundles/onlineconsole/images/apple-touch-icon-76x76.png?75244fbc" />
+<link rel="apple-touch-icon" href="/bundles/onlineconsole/images/apple-touch-icon-152x152.png?75244fbc" />
+<link rel="icon" type="image/png" href="/bundles/onlineconsole/images/favicon-96x96.png?75244fbc" sizes="96x96" />
+<link rel="icon" type="image/png" href="/bundles/onlineconsole/images/favicon-16x16.png?75244fbc" sizes="16x16" />
+<link rel="icon" type="image/png" href="/bundles/onlineconsole/images/favicon-32x32.png?75244fbc" sizes="32x32" />
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-square70x70logo" content="/bundles/onlineconsole/images/mstile-70x70.png?75244fbc">
+<meta name="msapplication-square150x150logo" content="/bundles/onlineconsole/images/mstile-150x150.png?75244fbc">
+<meta name="msapplication-wide310x150logo" content="/bundles/onlineconsole/images/mstile-310x150.png?75244fbc">
+
+
+                <script src="/bundles/onlineconsole/js/jquery.min.js?75244fbc"></script>
+          <script src="/bundles/onlineconsole/js/select2.full.min.js?75244fbc"></script>
+          <script src="/bundles/onlineconsole/js/online-select2.js?75244fbc"></script>
+                    <!--[if IE]>
+          <script type="text/javascript" src="/bundles/onlineconsole/js/online-ie-fixes.js?75244fbc"></script>
+          <![endif]-->
+          <script type="text/javascript" src="/bundles/onlineconsole/js/bootstrap.min.js?75244fbc"></script>
+          <script type="text/javascript" src="/bundles/onlineconsole/js/bootstrap-dropdown.js?75244fbc"></script>
+          <script type="text/javascript" src="/bundles/onlineconsole/js/bootstrap-tooltip.js?75244fbc"></script>
+                    <script type="text/javascript" src="/bundles/onlineconsole/js/bootstrap-alert.js?75244fbc"></script>
+                              <script src="/bundles/onlineconsole/js/online-global.js?75244fbc"></script>
+          <script src="/bundles/fosjsrouting/js/router.js?75244fbc"></script>
+          <script src="/js/routing?callback=fos.Router.setData&amp;t=f0c9856e3613f727ed5540a475ea9cc69da925d8"></script>
+      
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.prevent-double-click').click(function(){
+        $('.loader').removeClass('hidden');
+        $('.prevent-double-click').addClass('hidden');
+    });
+});
+</script>
+
+<script type="text/javascript" src="/bundles/onlineconsole/js/bootstrap-modal.js?75244fbc"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    OnlineOrderServer.current_dc = '0';
+    OnlineOrderServer.server_price = 84.99;
+});
+</script>
+<script type="text/javascript" src="/bundles/onlineconsole/js/online-order-server.js?75244fbc"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    window.onload = function() {
+        if ($('input').is(':checked')) {
+            $('input:checked').closest('.offer-option').addClass('selectedblue');
+        }
+    };
+    $('input').change(selectedBlue);
+    function selectedBlue() {
+        var self = $(this);
+        var neighbours = self.parent().parent().siblings();
+        neighbours.removeClass('selectedblue');
+        if (self.is(':checked')) {
+            self.closest('.offer-option').addClass('selectedblue');
+        }
+        $("[id^='offer-option-description']").removeAttr('data-original-title title');
+        $('.disabled-label').each(function() {
+            $(this).attr('title','This\x20option\x20is\x20not\x20available\x20for\x20this\x20service\x20level.').tooltip('getTitle');
+    });
+    }
+});
+</script>
+              </head>
+
+    <body class="online" role="document">
+  
+    <div class="container front">
+
+<div class="loader hidden"><span class="glyphicon glyphicon-refresh spin"></span> Please wait…</div>
+<div class="pull-left header small_ypadding no_xpadding small_ymargin topmenuphone" id="logonline">
+  <a href="/en/account/home" class="pull-left no-underline logo-online">
+    <img src="/bundles/onlineconsole/images/logoblack.svg?75244fbc" alt="Online" width="163" />
+    <span>Online.net</span>
+  </a>
+</div>
+ <div class="pull-right span4 bgcolor-phone text-center spaced">
+                                <div class="bgcolor-phone alert small_xpadding no_margin">
+    <p class="text-center small_ypadding"><span class="h3 bold"><i class="iconline iconline-phone"></i> Online Assistance</span><br />
+            <span class="h4 bold">+44 203 880-5444</span><br>
+        Opening time 24 hours/7 days a week<br />
+    <i>
+                                            No waiting time</p>
+                        </i>
+    <div class="small_xpadding small_xmargin">
+        </div>
+    </div>
+
+     </div>
+ <div class="clear"></div>
+
+<div class="row-fluid">
+
+
+<div class="breadcrumbloc">
+<ul class="breadcrumb">
+  <li><a href="/en/order/server" >1. Server choice</a></li>
+    <li><a href="/en/order/server/all-options"  class='underline'>2. Server options</a></li>
+  
+              <li><span>3. User information</span></li>
+      
+    <li><span>4. Summary</span></li>
+  
+        <li><span>5. Payment</span></li>
+  </ul></div>
+
+
+            </div>
+
+  <div class="clear"></div>
+  <div class="content">
+
+    <div class="main_content">
+
+    
+  
+        <div class="alert alert-success alert-block disappear"><a class="close" data-dismiss="alert" href="#">×</a><strong><em>Notice:</em></strong> ENT DEALS 1701.1 added to shopping cart</div>
+        
+  <div class="row">
+
+<form method="post" action="/en/order/server/all-options?offer_tld=support" id="option-order-form">
+<input name="option" value="1" type="hidden" />
+
+  <h1 class="span9"><span class="highlight">2. Server options:</span> <span class="h3">ENT DEALS 1701.1</span></h1>
+
+  
+
+    
+  <input type="hidden" id="_hidden_addons" name="support_options" value="" />
+  <input type="hidden" id="_hidden_options" name="options" value="" />
+  <input type="hidden" id="_hidden_offer" name="support" value="" />
+
+     <div class="pull-right span3">
+      <div id="sidenav">
+       <h4 class="summary-container-title">Summary</h4>
+       <div class="summary-container boxform clearfix">
+
+         <h4 class="highlight firsttitle">ENT DEALS 1701.1</h4>
+               <div id="new-options">
+             <h5 class="small_ymargin">Options:</h5>
+             <ul class="unstyled">
+             </ul>
+         </div>
+               <div id="support-features">
+                        <div id="support-features-basic">
+               <h4 class="highlight">Basic service level</h4>
+               <h5 class="small_ymargin">Support features:</h5>
+               <ul class="unstyled">
+<li>
+  <strong>Support ticket</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li>
+  <strong>Phone support</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li>
+  <strong>Sales support</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li class="unavailable">
+  <strong>Priority technical support</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Datacenter access</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Server personalisation</strong>
+  <span class="sumtext">-</span>
+</li>
+<li>
+  <strong>GTI</strong>
+  <span class="sumtext">H+4</span>
+</li>
+<li class="last">
+  <strong>SLA</strong>
+  <span class="sumtext">99,9 %</span>
+</li>
+<li class="unavailable">
+  <strong>Quota of IP failover</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Guaranteed bandwidth</strong>
+  <span class="sumtext">-</span>
+</li>
+</ul>
+            </div>
+                        <div id="support-features-business">
+               <h4 class="highlight">Business service level</h4>
+               <h5 class="small_ymargin">Support features:</h5>
+               <ul class="unstyled">
+<li>
+  <strong>Support ticket</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Phone support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Sales support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Priority technical support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Datacenter access</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li class="unavailable">
+  <strong>Server personalisation</strong>
+  <span class="sumtext">-</span>
+</li>
+<li>
+  <strong>GTI</strong>
+  <span class="sumtext">H+1</span>
+</li>
+<li>
+  <strong>SLA</strong>
+  <span class="sumtext">99,95 %</span>
+</li>
+<li class="last">
+  <strong>Quota of IP failover</strong>
+  <span class="sumtext">+15</span>
+</li>
+<li class="unavailable">
+  <strong>Guaranteed bandwidth</strong>
+  <span class="sumtext">-</span>
+</li>
+</ul>
+            </div>
+                     </div>
+        </div>
+      </div>
+     </div>
+
+  
+  <div class="formulaire span9" id="options">
+    <h2 class="page-header">Service level</h2>
+        <ul class="unstyled list-striped">
+            <li class="offer-container">
+      <div class="offer" id="offer-basic" data-id="768" data-price="0">
+        <div class="spaced clearfix bouton ">
+          <div class="span6">
+              <p><label for="checkbox-basic"><strong class="offer-title h4">Basic service level</strong></label></p>
+              <p>
+              default support level providing minimal ONLINE support<br />
+              <a href="#moreinfo"title="More info about Basic service level"  data-toggle="collapse" data-target="#collapsebasic" class="moreinfo collapsed btncollapse">
+                <span class="morebtn text-info">More info</span>
+                <span class="morebtn glyphicon  glyphicon-plus-sign text-info"> </span>
+                <span class="lessbtn text-info">Collapse</span>
+                <span class="lessbtn glyphicon glyphicon-minus-sign text-info"> </span>
+               </a>
+              </a></p>
+              <div class="offer-description collapse span6" id="collapsebasic"><strong>Support features: </strong> <ul class="unstyled">
+<li>
+  <strong>Support ticket</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li>
+  <strong>Phone support</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li>
+  <strong>Sales support</strong>
+  <span class="glyphicon glyphicon-ok  text-success"></span>
+</li>
+<li class="unavailable">
+  <strong>Priority technical support</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Datacenter access</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Server personalisation</strong>
+  <span class="sumtext">-</span>
+</li>
+<li>
+  <strong>GTI</strong>
+  <span class="sumtext">H+4</span>
+</li>
+<li class="last">
+  <strong>SLA</strong>
+  <span class="sumtext">99,9 %</span>
+</li>
+<li class="unavailable">
+  <strong>Quota of IP failover</strong>
+  <span class="sumtext">-</span>
+</li>
+<li class="unavailable">
+  <strong>Guaranteed bandwidth</strong>
+  <span class="sumtext">-</span>
+</li>
+</ul>
+</div>
+        </div>
+        <div class="offer-price span2 text-right"><p><strong>
+                      free                    </strong></p>
+        </div>
+        <div class="text-center"><input type="radio" name="service_level" value="768" id="checkbox-basic" class="span1" /></div>
+           </div>
+     </li>
+            <li class="offer-container">
+      <div class="offer" id="offer-business" data-id="3486" data-price="35">
+        <div class="spaced clearfix bouton ">
+          <div class="span6">
+              <p><label for="checkbox-business"><strong class="offer-title h4">Business service level</strong></label></p>
+              <p>
+              adapted to the professional use of an ONLINE server<br />
+              <a href="#moreinfo"title="More info about Business service level"  data-toggle="collapse" data-target="#collapsebusiness" class="moreinfo collapsed btncollapse">
+                <span class="morebtn text-info">More info</span>
+                <span class="morebtn glyphicon  glyphicon-plus-sign text-info"> </span>
+                <span class="lessbtn text-info">Collapse</span>
+                <span class="lessbtn glyphicon glyphicon-minus-sign text-info"> </span>
+               </a>
+              </a></p>
+              <div class="offer-description collapse span6" id="collapsebusiness"><strong>Support features: </strong> <ul class="unstyled">
+<li>
+  <strong>Support ticket</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Phone support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Sales support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Priority technical support</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li>
+  <strong>Datacenter access</strong>
+  <span class="glyphicon glyphicon-ok text-success"></span>
+</li>
+<li class="unavailable">
+  <strong>Server personalisation</strong>
+  <span class="sumtext">-</span>
+</li>
+<li>
+  <strong>GTI</strong>
+  <span class="sumtext">H+1</span>
+</li>
+<li>
+  <strong>SLA</strong>
+  <span class="sumtext">99,95 %</span>
+</li>
+<li class="last">
+  <strong>Quota of IP failover</strong>
+  <span class="sumtext">+15</span>
+</li>
+<li class="unavailable">
+  <strong>Guaranteed bandwidth</strong>
+  <span class="sumtext">-</span>
+</li>
+</ul>
+</div>
+        </div>
+        <div class="offer-price span2 text-right"><p><strong>
+                      35 &euro; <small>pre-tax /month</small>                    </strong></p>
+        </div>
+        <div class="text-center"><input type="radio" name="service_level" value="3486" id="checkbox-business" class="span1" /></div>
+           </div>
+     </li>
+          </ul>
+  </div>
+
+              <div class="span9"><h2 class="page-header"><span class="h2"> Available options for</span> <span class="h3 highlight">Service level</span> <span class="h3 highlight" id="serviceleveldesc"></span></h3></div>
+
+                          <div class="span9 offer-option-container">
+
+          <h3>
+                        RPN
+                                                            <a href="#moreinfo" class="pull-right moreinfo collapsed btncollapse" data-toggle="collapse" data-target="#collapserpn-network">
+                <span class="morebtn glyphicon glyphicon-question-sign h3"> </span>
+                <span class="morebtn text-info onhover lefty">More info about RPN</span>
+                <span class="lessbtn glyphicon glyphicon-remove-circle h3"> </span>
+                <span class="lessbtn text-info onhover lefty">Hide</span>
+               </a>
+            </a>
+                                  </h3>
+          <div id="collapserpn-network"  class="collapse"><p class="description">The RPN is an exclusive offer that allows you to use your server&#039;s second network interface. This interface is linked to a private network that allows your servers to communicate with each other directly. The RPN also lets you use Online tools like backup via Rsync or NAS/SAN.</p></div>
+
+          
+          <ul class="unstyled offer-category-options list-striped span9">
+
+          
+                                  
+                                                                              
+                <li class="offer-option spaced clearfix" id="offer-option-rpn-gb" data-id="3485" data-price="0">
+                <label class="span8" for="checkbox-3485" id="offer-option-description-3485">
+                <span class="offer-description">RPN-G</span>
+                <span class="offer-extra-description"> - 1Gbps personal private network</span>
+                <strong class="span3 offer-option-price pull-right">
+                                            free                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[rpn-network]" id="checkbox-3485" /></p>
+                </li>
+
+                                                                                                                
+                <li class="offer-option spaced clearfix" id="offer-option-rpn-10m" data-id="762" data-price="0">
+                <label class="span8" for="checkbox-762" id="offer-option-description-762">
+                <span class="offer-description">RPN-E</span>
+                <span class="offer-extra-description"> - 100Mbps personal private network</span>
+                <strong class="span3 offer-option-price pull-right">
+                                            free                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[rpn-network]" id="checkbox-762" /></p>
+                </li>
+
+                                                                              
+                                              
+                                                                            
+                      
+                    </ul>
+                  </div>
+                          <div class="span9 offer-option-container">
+
+          <h3>
+                        Backup (RPN Rsync)
+                                                            <a href="#moreinfo" class="pull-right moreinfo collapsed btncollapse" data-toggle="collapse" data-target="#collapserpn-rsync">
+                <span class="morebtn glyphicon glyphicon-question-sign h3"> </span>
+                <span class="morebtn text-info onhover lefty">More info about Backup (RPN Rsync)</span>
+                <span class="lessbtn glyphicon glyphicon-remove-circle h3"> </span>
+                <span class="lessbtn text-info onhover lefty">Hide</span>
+               </a>
+            </a>
+                                  </h3>
+          <div id="collapserpn-rsync"  class="collapse"><p class="description">Do backups of your Dedibox servers securely on a synchronised file system, using the protocol Rsync3, an effective protocol and a guarantee for the confidentiality of the transmitted data. Attention: this option does not work without the RPN option.</p></div>
+
+          
+          <ul class="unstyled offer-category-options list-striped span9">
+
+          
+                                  
+                                                                              
+                <li class="offer-option spaced clearfix" id="offer-option-rpn-rsync-200" data-id="764" data-price="4.99">
+                <label class="span8" for="checkbox-764" id="offer-option-description-764">
+                <span class="offer-description">RPNRsync200</span>
+                <span class="offer-extra-description"> - 200GB Backup Space via RPN</span>
+                <strong class="span3 offer-option-price pull-right">
+                                            4.99 &euro; <small>pre-tax /month</small>                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[rpn-rsync]" id="checkbox-764" /></p>
+                </li>
+
+                                                                                                                
+                <li class="offer-option spaced clearfix" id="offer-option-rpn-rsync-500" data-id="765" data-price="9.99">
+                <label class="span8" for="checkbox-765" id="offer-option-description-765">
+                <span class="offer-description">RPNRsync500</span>
+                <span class="offer-extra-description"> - 500GB Backup Space via RPN</span>
+                <strong class="span3 offer-option-price pull-right">
+                                            9.99 &euro; <small>pre-tax /month</small>                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[rpn-rsync]" id="checkbox-765" /></p>
+                </li>
+
+                                                                              
+                                              
+                                                                                                            
+                      
+                      <li class="offer-option clearfix spaced" id="offer-option-no-rpn-rsync" data-price="0">
+              <label class="span8" id="offer-option-description-rpn-rsync" for="checkbox-no-rpn-rsync">
+              <span class="offer-description">No RPN Rsync backup</span></label>
+               <p class="span text-right"><input type="radio" name="category_options[rpn-rsync]" id="checkbox-no-rpn-rsync"  checked="checked" /></p>
+            </li>
+                    </ul>
+                  </div>
+                          <div class="span9 offer-option-container">
+
+          <h3>
+                        Backup (FTP)
+                                                            <a href="#moreinfo" class="pull-right moreinfo collapsed btncollapse" data-toggle="collapse" data-target="#collapsebackup">
+                <span class="morebtn glyphicon glyphicon-question-sign h3"> </span>
+                <span class="morebtn text-info onhover lefty">More info about Backup (FTP)</span>
+                <span class="lessbtn glyphicon glyphicon-remove-circle h3"> </span>
+                <span class="lessbtn text-info onhover lefty">Hide</span>
+               </a>
+            </a>
+                                  </h3>
+          <div id="collapsebackup"  class="collapse"><p class="description">Because you can never be safe from human errors or hardware failure, Online provides a free 100 GB backup space via secure FTP (optionally extensible to 700 GB) to do backups of you critical data for an unlimited period.</p></div>
+
+          
+          <ul class="unstyled offer-category-options list-striped span9">
+
+                                                    <li class="offer-option spaced clearfix" id="offer-option-backup-10gb" data-id="890" data-price="0" data-option="1">
+              <label class="span8" for="checkbox-890" id="offer-option-description-890">
+                <span class="offer-description">Backup 100GB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                    free                                  </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[backup]" id="checkbox-890" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-backup-200gb" data-id="891" data-price="4.99" data-option="1">
+              <label class="span8" for="checkbox-891" id="offer-option-description-891">
+                <span class="offer-description">Backup 750GB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            4.99 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[backup]" id="checkbox-891" /></p>
+            </li>
+                    
+                                                      
+                      <li class="offer-option clearfix spaced" id="offer-option-no-backup" data-price="0">
+              <label class="span8" id="offer-option-description-backup" for="checkbox-no-backup">
+              <span class="offer-description">No FTP backup</span></label>
+               <p class="span text-right"><input type="radio" name="category_options[backup]" id="checkbox-no-backup"  checked="checked" /></p>
+            </li>
+                    </ul>
+                  </div>
+                          <div class="span9 offer-option-container">
+
+          <h3>
+                        Protection against DDoS
+                                                            <a href="#moreinfo" class="pull-right moreinfo collapsed btncollapse" data-toggle="collapse" data-target="#collapseddos">
+                <span class="morebtn glyphicon glyphicon-question-sign h3"> </span>
+                <span class="morebtn text-info onhover lefty">More info about Protection against DDoS</span>
+                <span class="lessbtn glyphicon glyphicon-remove-circle h3"> </span>
+                <span class="lessbtn text-info onhover lefty">Hide</span>
+               </a>
+            </a>
+                                  </h3>
+          <div id="collapseddos"  class="collapse"><p class="description">Attacks by distributed denial of service are now a real threat to your infrastructure&#039;s availability. We propose a technical solution, capable of filtering the majority of known DDoS attacks and keep your service available. This option is only available for companies.</p></div>
+
+          
+          <ul class="unstyled offer-category-options list-striped span9">
+
+          
+                                  
+                                                                              
+                <li class="offer-option spaced clearfix" id="offer-option-ddos-prev" data-id="775" data-price="20">
+                <label class="span8" for="checkbox-775" id="offer-option-description-775">
+                <span class="offer-description">Preventive protection against DDoS</span>
+                <span class="offer-extra-description"> - </span>
+                <strong class="span3 offer-option-price pull-right">
+                                            20 &euro; <small>pre-tax /month</small>                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[ddos]" id="checkbox-775" /></p>
+                </li>
+
+                                                                                                                
+                <li class="offer-option spaced clearfix" id="offer-option-ddos-cur" data-id="776" data-price="70">
+                <label class="span8" for="checkbox-776" id="offer-option-description-776">
+                <span class="offer-description">Curative protection against DDoS</span>
+                <span class="offer-extra-description"> - </span>
+                <strong class="span3 offer-option-price pull-right">
+                                            70 &euro; <small>pre-tax /month</small>                                      </strong>
+                  </label>
+                   <p class="span text-right"><input type="radio" name="category_options[ddos]" id="checkbox-776" /></p>
+                </li>
+
+                                                                              
+                                              
+              
+                      
+                      <li class="offer-option clearfix spaced" id="offer-option-no-ddos" data-price="0">
+              <label class="span8" id="offer-option-description-ddos" for="checkbox-no-ddos">
+              <span class="offer-description">Minimal protection</span></label>
+               <p class="span text-right"><input type="radio" name="category_options[ddos]" id="checkbox-no-ddos"  checked="checked" /></p>
+            </li>
+                    </ul>
+                  </div>
+                          <div class="span9 offer-option-container">
+
+          <h3>
+                        Network-attached Storage
+                                                            <a href="#moreinfo" class="pull-right moreinfo collapsed btncollapse" data-toggle="collapse" data-target="#collapserpn-san">
+                <span class="morebtn glyphicon glyphicon-question-sign h3"> </span>
+                <span class="morebtn text-info onhover lefty">More info about Network-attached Storage</span>
+                <span class="lessbtn glyphicon glyphicon-remove-circle h3"> </span>
+                <span class="lessbtn text-info onhover lefty">Hide</span>
+               </a>
+            </a>
+                                  </h3>
+          <div id="collapserpn-san"  class="collapse"><p class="description">RPN-SAN is a block storage solution, available over iSCSI via RPN network</p></div>
+
+          
+          <ul class="unstyled offer-category-options list-striped span9">
+
+                                                    <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3625" data-price="9.99" data-option="1">
+              <label class="span8" for="checkbox-3625" id="offer-option-description-3625">
+                <span class="offer-description">RPN-SAN BASIC 1TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            9.99 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3625" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="1101" data-price="19.99" data-option="1">
+              <label class="span8" for="checkbox-1101" id="offer-option-description-1101">
+                <span class="offer-description">SAN-HA 1TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            19.99 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-1101" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3398" data-price="29.99" data-option="1">
+              <label class="span8" for="checkbox-3398" id="offer-option-description-3398">
+                <span class="offer-description">RPN-SAN HA 256GB SSD</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            29.99 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3398" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3626" data-price="49.95" data-option="1">
+              <label class="span8" for="checkbox-3626" id="offer-option-description-3626">
+                <span class="offer-description">RPN-SAN BASIC 5TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            49.95 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3626" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3399" data-price="59.95" data-option="1">
+              <label class="span8" for="checkbox-3399" id="offer-option-description-3399">
+                <span class="offer-description">RPN-SAN HA 512GB SSD</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            59.95 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3399" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3627" data-price="99.90" data-option="1">
+              <label class="span8" for="checkbox-3627" id="offer-option-description-3627">
+                <span class="offer-description">RPN-SAN BASIC 10TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            99.90 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3627" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="1102" data-price="99.95" data-option="1">
+              <label class="span8" for="checkbox-1102" id="offer-option-description-1102">
+                <span class="offer-description">SAN-HA 5TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            99.95 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-1102" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="3400" data-price="119.90" data-option="1">
+              <label class="span8" for="checkbox-3400" id="offer-option-description-3400">
+                <span class="offer-description">RPN-SAN HA 1TB SSD</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            119.90 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-3400" /></p>
+            </li>
+                                          <li class="offer-option spaced clearfix" id="offer-option-rpn-san" data-id="1103" data-price="199.90" data-option="1">
+              <label class="span8" for="checkbox-1103" id="offer-option-description-1103">
+                <span class="offer-description">SAN-HA 10TB</span>
+                <strong class="span3 offer-option-price pull-right">
+                                                            199.90 &euro; <small>pre-tax /month</small>                                                      </strong>
+                </label>
+                <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-1103" /></p>
+            </li>
+                    
+                                                      
+                      <li class="offer-option clearfix spaced" id="offer-option-no-rpn-san" data-price="0">
+              <label class="span8" id="offer-option-description-rpn-san" for="checkbox-no-rpn-san">
+              <span class="offer-description">No SAN</span></label>
+               <p class="span text-right"><input type="radio" name="category_options[rpn-san]" id="checkbox-no-rpn-san"  checked="checked" /></p>
+            </li>
+                    </ul>
+                  </div>
+            </div>
+
+              <div class="text-center span8">
+        <input type="submit" value="Order" class="prevent-double-click btn btn-primary" id="option-order">
+      </div>
+</form>
+  <div id="no_support_modal" class="modal hide fade">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>Basic support option selected</h3>
+      </div>
+      <div class="modal-body">
+          <p>Important warning: If you intend to use your dedicated server as part of your professional activity or to host critical applications, we recommend that you subscribe to the business or critical service level, which provide you accompaniment and adapted services. Online declines any responsibility on servers with an inadequate service level.</p>
+      </div>
+      <div class="modal-footer">
+          <input type="submit" class="btn no-option-ack" value="Continue with basic support level"/>
+          <a id="option-support-force" data-dismiss="modal" class="btn btn-primary">Add business support and continue</a>
+      </div>
+  </div>
+
+  <div id="no_rpn_modal" class="modal hide fade">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3>No RPN option selected</h3>
+      </div>
+      <div class="modal-body">
+          <p>Some options you chose are not available without selecting an RPN option too.</p>
+      </div>
+  </div>
+
+</div>
+
+    
+    </div>
+
+  
+    <div class="footer clear text-right">
+                    <p class="info text-center"><a href="http://www.online.net/cgv-en.pdf">Condition of Sales</a> - <a href="http://www.online.net/cgv-dedie-en.pdf">T&S dedicated server</a> - <a href="http://www.online.net/cgv-dedirack-en.pdf">T&S dedirack</a> - <a href="http://www.online.net/cgv-c14-en.pdf">T&S C14</a> - <a href="http://www.online.net/en/document-legal/legal-notices">Legal notices</a><br />Copyright © 1999-2017 - Online SAS - BP 438 - 75366 Paris CEDEX 08 - RCS Paris B 433 115 904</p>
+        </div>
+
+  </div>
+        <script type="text/javascript">
+      $('.dropdown-toggle').dropdown();
+    </script>
+      </div>
+  </body>
+</html>
