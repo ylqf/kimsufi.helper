@@ -48,7 +48,7 @@
     function checkWSI($id){
         $resp = file_get_contents( "https://www.wholesaleinternet.net/out-of-stock/?id=" . $id);
         $status = array(
-            'status'=> strpos($resp , 'out of stock') !== false
+            'status'=> strpos($resp , 'out of stock') === false
         );
         header('Content-type: application/json');
         echo( json_encode($status));
