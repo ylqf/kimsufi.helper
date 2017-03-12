@@ -1,6 +1,6 @@
 <?php
     /****************************************
-     *  VERSION : v.20170122
+     *  VERSION : v.20170312
      *  DATE    : 2016-10-06
      *
      *  Copyright (C) 201x (reruin#gmail.com) 
@@ -44,10 +44,24 @@
         echo( json_encode($status));
         exit();
     }
+
+    function checkWSI($id){
+        $resp = file_get_contents( "https://www.wholesaleinternet.net/out-of-stock/?id=" . $id);
+        $status = array(
+            'status'=> strpos($resp , 'out of stock') !== false
+        );
+        header('Content-type: application/json');
+        echo( json_encode($status));
+        exit();
+    }
+
     if(!empty($_GET['hard'])){
         $id = $_GET['hard'];
         if( $_GET['type'] == 'online'){
             checkOnline($id);
+        }
+        else if($_GET['type'] == 'wsi'){
+            checkWSI($id);
         }else{
             checkKimsufi($id);
         }
